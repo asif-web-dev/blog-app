@@ -12,8 +12,10 @@ function MyPosts() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+ const currentUser = user ?? auth.currentUser;
+ 
   useEffect(() => {
-     const currentUser = user ?? auth.currentUser;
+    
     if (!currentUser) return;
 
     const q = query(
