@@ -92,7 +92,9 @@ import { db } from "./firebase/firebaseConfig";
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import  './App.css'
-
+import MyPosts from "./pages/Myposts"
+import { AuthProvider } from "./context/AuthContext";
+import Footer from "./components/Footer";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -142,6 +144,7 @@ function Home() {
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Navbar />
       <Routes>
@@ -153,10 +156,17 @@ function App() {
           <CreatePost/>
           </PrivateRoute>
           }/>
+        <Route path="/my-posts" element={
+          <PrivateRoute>
+            <MyPosts/>
+          </PrivateRoute>
+        }/>
           <Route path="/post/:id" element={<Post/>}/>
           <Route path="/edit/:id" element={<EditPost/>}/>
       </Routes>
     </Router>
+    <Footer/>
+    </AuthProvider>
   );
 }
 

@@ -61,6 +61,7 @@ function Navbar() {
         </Link>
 
         <div className="flex items-center gap-6">
+          <Link to="/my-posts" className="text-sm text-blue-600 hover:underline">My Posts </Link>
           {user ? (
             <>
               <Link
